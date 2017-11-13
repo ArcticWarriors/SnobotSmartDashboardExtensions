@@ -1,0 +1,25 @@
+
+apply plugin: 'java'
+
+repositories {
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src"]
+        }
+    }
+}
+
+dependencies {
+    compile 'jfree:jfreechart:1.0.13'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
