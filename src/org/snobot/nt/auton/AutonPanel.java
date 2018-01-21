@@ -1,4 +1,4 @@
-package com.snobot.sd.auton;
+package org.snobot.nt.auton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

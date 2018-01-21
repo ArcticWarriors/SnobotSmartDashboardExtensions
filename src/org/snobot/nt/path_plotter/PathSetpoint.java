@@ -1,4 +1,4 @@
-package com.snobot.sd.path_plotter;
+package org.snobot.nt.path_plotter;
 
 public class PathSetpoint
 {

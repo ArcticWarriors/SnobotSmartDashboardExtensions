@@ -1,4 +1,4 @@
-package com.snobot.sd.spline_plotter;
+package org.snobot.nt.spline_plotter;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
