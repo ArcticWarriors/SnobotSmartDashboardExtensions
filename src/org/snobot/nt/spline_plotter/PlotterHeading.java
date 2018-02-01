@@ -26,8 +26,14 @@ public class PlotterHeading extends JPanel
     private XYSeries mIdealHeading;
     private XYSeries mRealHeading;
 
-    private JPanel m_chartPanel;
+    private JPanel mChartPanel;
 
+    /**
+     * Constructor.
+     * 
+     * @param aChartTitle
+     *            The title
+     */
     public PlotterHeading(String aChartTitle)
     {
         setLayout(new BorderLayout());
@@ -49,31 +55,48 @@ public class PlotterHeading extends JPanel
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        mChartPanel = new ChartPanel(chart);
+        mChartPanel.setPreferredSize(new Dimension(400, 300));
+        mChartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(mChartPanel, BorderLayout.CENTER);
     }
 
-    public void setPath(List<Double> headings)
+    /**
+     * Sets the ideal heading.
+     * 
+     * @param aHeadings
+     *            The heading
+     */
+    public void setPath(List<Double> aHeadings)
     {
         mIdealHeading.clear();
         clearActuals();
 
-        for (int i = 0; i < headings.size(); ++i)
+        for (int i = 0; i < aHeadings.size(); ++i)
         {
-            mIdealHeading.add(i, headings.get(i));
+            mIdealHeading.add(i, aHeadings.get(i));
         }
     }
 
+    /**
+     * Clears the measured results.
+     */
     public void clearActuals()
     {
         mRealHeading.clear();
     }
 
-    public void setPoint(int index, double heading)
+    /**
+     * Sets a measured point.
+     * 
+     * @param aIndex
+     *            The index of the point
+     * @param aHeading
+     *            The measured heading
+     */
+    public void setPoint(int aIndex, double aHeading)
     {
-        mRealHeading.add(index, heading);
+        mRealHeading.add(aIndex, aHeading);
     }
 }

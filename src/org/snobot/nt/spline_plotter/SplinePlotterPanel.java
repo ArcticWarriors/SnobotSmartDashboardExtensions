@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 /**
- * Container for the three individual plotting panels (right, left, heading)
+ * Container for the three individual plotting panels (right, left, heading).
  * 
  * @author PJ
  *
@@ -20,6 +20,9 @@ public class SplinePlotterPanel extends JPanel
     private PlotterHeading mHeadingPlotter;
     private PlotterXY mXYPlotter;
 
+    /**
+     * Constructor.
+     */
     public SplinePlotterPanel()
     {
         setLayout(new GridBagLayout());
@@ -53,7 +56,13 @@ public class SplinePlotterPanel extends JPanel
 
     }
 
-    public void setPath(List<SplineSegment> path_points)
+    /**
+     * Sets the spline segments.
+     * 
+     * @param aPathPoints
+     *            The segments
+     */
+    public void setPath(List<SplineSegment> aPathPoints)
     {
         List<Double> leftPos = new ArrayList<Double>();
         List<Double> leftVel = new ArrayList<Double>();
@@ -62,17 +71,17 @@ public class SplinePlotterPanel extends JPanel
         List<Double> heading = new ArrayList<Double>();
         List<PlotterXY.XYPoint> xyList = new ArrayList<PlotterXY.XYPoint>();
 
-        for (int i = 0; i < path_points.size(); ++i)
+        for (int i = 0; i < aPathPoints.size(); ++i)
         {
-            leftPos.add(path_points.get(i).mLeftSidePosition);
-            leftVel.add(path_points.get(i).mLeftSideVelocity);
-            rightPos.add(path_points.get(i).mRightSidePosition);
-            rightVel.add(path_points.get(i).mRightSideVelocity);
-            heading.add(path_points.get(i).mRobotHeading);
+            leftPos.add(aPathPoints.get(i).mLeftSidePosition);
+            leftVel.add(aPathPoints.get(i).mLeftSideVelocity);
+            rightPos.add(aPathPoints.get(i).mRightSidePosition);
+            rightVel.add(aPathPoints.get(i).mRightSideVelocity);
+            heading.add(aPathPoints.get(i).mRobotHeading);
 
             PlotterXY.XYPoint xyPoint = new PlotterXY.XYPoint();
-            xyPoint.mX = path_points.get(i).mAverageX;
-            xyPoint.mY = path_points.get(i).mAverageY;
+            xyPoint.mX = aPathPoints.get(i).mAverageX;
+            xyPoint.mY = aPathPoints.get(i).mAverageY;
             xyList.add(xyPoint);
         }
 
@@ -82,6 +91,9 @@ public class SplinePlotterPanel extends JPanel
         mXYPlotter.setPath(xyList);
     }
 
+    /**
+     * Clears the measured values.
+     */
     public void clearActuals()
     {
         mLeftWheelPlotter.clearActuals();
@@ -90,12 +102,20 @@ public class SplinePlotterPanel extends JPanel
         mXYPlotter.clearActuals();
     }
 
-    public void setPoint(int index, SplineSegment splineSegment)
+    /**
+     * Sets a measured point.
+     * 
+     * @param aIndex
+     *            The index of this measurement
+     * @param aSplineSegment
+     *            The measurement
+     */
+    public void setPoint(int aIndex, SplineSegment aSplineSegment)
     {
-        mLeftWheelPlotter.setPoint(index, splineSegment.mLeftSidePosition, splineSegment.mLeftSideVelocity);
-        mRightWheelPlotter.setPoint(index, splineSegment.mRightSidePosition, splineSegment.mRightSideVelocity);
-        mHeadingPlotter.setPoint(index, splineSegment.mRobotHeading);
-        mXYPlotter.setPoint(splineSegment.mAverageX, splineSegment.mAverageY);
+        mLeftWheelPlotter.setPoint(aIndex, aSplineSegment.mLeftSidePosition, aSplineSegment.mLeftSideVelocity);
+        mRightWheelPlotter.setPoint(aIndex, aSplineSegment.mRightSidePosition, aSplineSegment.mRightSideVelocity);
+        mHeadingPlotter.setPoint(aIndex, aSplineSegment.mRobotHeading);
+        mXYPlotter.setPoint(aSplineSegment.mAverageX, aSplineSegment.mAverageY);
     }
 
 }

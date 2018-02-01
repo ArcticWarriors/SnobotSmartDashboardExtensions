@@ -16,7 +16,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  * Panel used to plot the ideal and real paths that the robot uses for motion
- * profiling
+ * profiling.
  * 
  * @author PJ
  *
@@ -29,8 +29,11 @@ public class PathPlotterPanel extends JPanel
     private XYSeries mRealPosition;
     private XYSeries mRealVelocity;
 
-    private JPanel m_chartPanel;
+    private JPanel mChartPanel;
 
+    /**
+     * Constructor.
+     */
     public PathPlotterPanel()
     {
         setLayout(new BorderLayout());
@@ -54,36 +57,53 @@ public class PathPlotterPanel extends JPanel
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        mChartPanel = new ChartPanel(chart);
+        mChartPanel.setPreferredSize(new Dimension(400, 300));
+        mChartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(mChartPanel, BorderLayout.CENTER);
     }
 
-    public void setPath(List<PathSetpoint> path_points)
+    /**
+     * Sets the expected path for the robot to drive.
+     * 
+     * @param aPathpoints
+     *            The ideal path points
+     */
+    public void setPath(List<PathSetpoint> aPathpoints)
     {
         mIdealPosition.clear();
         mIdealVelocity.clear();
         clearActuals();
 
-        for (int i = 0; i < path_points.size(); ++i)
+        for (int i = 0; i < aPathpoints.size(); ++i)
         {
-            mIdealPosition.add(i, path_points.get(i).mPosition);
-            mIdealVelocity.add(i, path_points.get(i).mVelocity);
+            mIdealPosition.add(i, aPathpoints.get(i).mPosition);
+            mIdealVelocity.add(i, aPathpoints.get(i).mVelocity);
         }
     }
 
+    /**
+     * Clears the measured results from the graph.
+     */
     public void clearActuals()
     {
         mRealPosition.clear();
         mRealVelocity.clear();
     }
 
-    public void setPoint(int index, PathSetpoint aPoint)
+    /**
+     * Sets a measured point.
+     * 
+     * @param aIndex
+     *            The index of the point
+     * @param aPoint
+     *            The measured point
+     */
+    public void setPoint(int aIndex, PathSetpoint aPoint)
     {
-        mRealPosition.add(index, aPoint.mPosition);
-        mRealVelocity.add(index, aPoint.mVelocity);
+        mRealPosition.add(aIndex, aPoint.mPosition);
+        mRealVelocity.add(aIndex, aPoint.mVelocity);
     }
 
 }

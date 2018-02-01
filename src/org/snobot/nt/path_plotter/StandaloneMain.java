@@ -10,9 +10,14 @@ import javax.swing.JFrame;
 public class StandaloneMain
 {
 
-    public static void main(String[] args)
+    /**
+     * Main Runner.
+     * 
+     * @param aArg
+     *            optional arguments
+     */
+    public static void main(String[] aArg)
     {
-        JFrame frame = new JFrame();
 
         final PathPlotterPanel panel = new PathPlotterPanel();
 
@@ -54,6 +59,7 @@ public class StandaloneMain
 
         panel.setPath(path_points);
 
+        JFrame frame = new JFrame();
         frame.add(panel);
 
         frame.pack();
@@ -62,7 +68,7 @@ public class StandaloneMain
         frame.addComponentListener(new ComponentAdapter()
         {
             @Override
-            public void componentResized(ComponentEvent arg0)
+            public void componentResized(ComponentEvent aEvent)
             {
             }
         });
@@ -97,9 +103,9 @@ public class StandaloneMain
                     {
                         Thread.sleep(500);
                     }
-                    catch (InterruptedException e)
+                    catch (InterruptedException ex)
                     {
-                        e.printStackTrace();
+                        ex.printStackTrace(); // NOPMD
                     }
                 }
             }

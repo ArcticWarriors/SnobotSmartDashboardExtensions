@@ -3,12 +3,20 @@ package org.snobot.nt.util;
 import java.awt.Color;
 
 /**
- *
+ * Utility class for doing things like getting motor colors, etc.
+ * 
  * @author PJ
  */
 public class Util
 {
 
+    /**
+     * Gets a color for a motor based on a speed.
+     * 
+     * @param aSpeed
+     *            The speed
+     * @return The calculated color
+     */
     public static Color getMotorColor(double aSpeed)
     {
         if (Double.isNaN(aSpeed))
@@ -34,7 +42,7 @@ public class Util
     }
 
     /**
-     * Modifies the color to make it more see through
+     * Modifies the color to make it more see through.
      * 
      * @param aColor
      *            The color to modify

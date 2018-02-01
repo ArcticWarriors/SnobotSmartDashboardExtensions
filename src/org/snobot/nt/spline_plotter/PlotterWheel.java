@@ -15,7 +15,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 /**
- * Plots the path of an individual side of the robot
+ * Plots the path of an individual side of the robot.
  * 
  * @author PJ
  *
@@ -29,9 +29,15 @@ public class PlotterWheel extends JPanel
     private XYSeries mRealPosition;
     private XYSeries mRealVelocity;
 
-    private JPanel m_chartPanel;
+    private JPanel mChartPanel;
 
-    public PlotterWheel(String chartTitle)
+    /**
+     * Constructor.
+     * 
+     * @param aChartTitle
+     *            The title to put on the chart
+     */
+    public PlotterWheel(String aChartTitle)
     {
         setLayout(new BorderLayout());
         mIdealPosition = new XYSeries("Ideal  Position");
@@ -47,7 +53,7 @@ public class PlotterWheel extends JPanel
         mCollection.addSeries(mRealVelocity);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
-                chartTitle,
+                aChartTitle,
                 "Time (sec)",
                 "Data",
                 mCollection,
@@ -57,36 +63,57 @@ public class PlotterWheel extends JPanel
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        mChartPanel = new ChartPanel(chart);
+        mChartPanel.setPreferredSize(new Dimension(400, 300));
+        mChartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(mChartPanel, BorderLayout.CENTER);
     }
 
-    public void setPath(List<Double> position, List<Double> velocity)
+    /**
+     * Sets the spline center path, and the velocity.
+     * 
+     * @param aPosition
+     *            The ideal position, in inches
+     * @param aVelocity
+     *            The ideal velocity, in in/sec
+     */
+    public void setPath(List<Double> aPosition, List<Double> aVelocity)
     {
         mIdealPosition.clear();
         mIdealVelocity.clear();
         clearActuals();
 
-        for (int i = 0; i < position.size(); ++i)
+        for (int i = 0; i < aPosition.size(); ++i)
         {
-            mIdealPosition.add(i, position.get(i));
-            mIdealVelocity.add(i, velocity.get(i));
+            mIdealPosition.add(i, aPosition.get(i));
+            mIdealVelocity.add(i, aVelocity.get(i));
         }
     }
 
+    /**
+     * Clears the "real" values.
+     */
     public void clearActuals()
     {
         mRealPosition.clear();
         mRealVelocity.clear();
     }
 
-    public void setPoint(int index, double position, double velocity)
+    /**
+     * Sets a measured point from the robot.
+     * 
+     * @param aIndex
+     *            The index of this piont
+     * @param aPosition
+     *            The position, in inches
+     * @param aVelocity
+     *            The velocity, in in/sec
+     */
+    public void setPoint(int aIndex, double aPosition, double aVelocity)
     {
-        mRealPosition.add(index, position);
-        mRealVelocity.add(index, velocity);
+        mRealPosition.add(aIndex, aPosition);
+        mRealVelocity.add(aIndex, aVelocity);
     }
 
 }

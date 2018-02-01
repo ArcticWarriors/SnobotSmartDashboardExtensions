@@ -10,7 +10,13 @@ import javax.swing.JFrame;
 public class StandaloneMain
 {
 
-    public static void main(String[] args)
+    /**
+     * Main Runner.
+     * 
+     * @param aArgs
+     *            optional arguments
+     */
+    public static void main(String[] aArgs)
     {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +31,7 @@ public class StandaloneMain
         path_points.add(p);
 
         double radius = 1.7;
-        double angle_mult = .1;
+        double angleMult = .1;
 
         for (int i = 1; i < 10; ++i)
         {
@@ -35,8 +41,8 @@ public class StandaloneMain
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angle_mult * i);
-            p.mAverageY = (radius * i) * Math.cos(angle_mult * i);
+            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
 
             path_points.add(p);
         }
@@ -48,8 +54,8 @@ public class StandaloneMain
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angle_mult * i);
-            p.mAverageY = (radius * i) * Math.cos(angle_mult * i);
+            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
             path_points.add(p);
         }
         for (int i = 0; i < 10; ++i)
@@ -60,8 +66,8 @@ public class StandaloneMain
             p.mRightSideVelocity = p.mLeftSideVelocity;
             p.mRightSidePosition = p.mLeftSidePosition;
             p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angle_mult * i);
-            p.mAverageY = (radius * i) * Math.cos(angle_mult * i);
+            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
             path_points.add(p);
         }
 
@@ -83,7 +89,7 @@ public class StandaloneMain
         frame.addComponentListener(new ComponentAdapter()
         {
             @Override
-            public void componentResized(ComponentEvent arg0)
+            public void componentResized(ComponentEvent aEvent)
             {
             }
         });
@@ -125,9 +131,9 @@ public class StandaloneMain
                     {
                         Thread.sleep(500);
                     }
-                    catch (InterruptedException e)
+                    catch (InterruptedException ex)
                     {
-                        e.printStackTrace();
+                        ex.printStackTrace(); // NOPMD
                     }
                 }
             }
