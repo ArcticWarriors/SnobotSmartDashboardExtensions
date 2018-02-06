@@ -50,4 +50,31 @@ public class PathSetpoint
         mAcceleration = aAccel;
     }
 
+    public TrapezoidSegment getSegment()
+    {
+        return mSegment;
+    }
+
+    public double getPosition()
+    {
+        return mPosition;
+    }
+
+    public double getVelocity()
+    {
+        return mVelocity;
+    }
+
+    public double getAcceleration()
+    {
+        return mAcceleration;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "PathSetpoint [mSegment=" + mSegment + ", mPosition=" + mPosition + ", mVelocity=" + mVelocity + ", mAcceleration=" + mAcceleration
+                + "]";
+    }
+
 }

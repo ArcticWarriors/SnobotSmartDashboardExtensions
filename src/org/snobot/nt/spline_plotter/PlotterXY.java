@@ -16,17 +16,14 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class PlotterXY extends JPanel
 {
+    private final XYSeries mIdeal;
+    private final XYSeries mReal;
+
     public static class XYPoint
     {
         public double mX;
         public double mY;
     }
-
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdeal;
-    private XYSeries mReal;
-
-    private JPanel mChartPanel;
 
     /**
      * Constructor.
@@ -40,26 +37,26 @@ public class PlotterXY extends JPanel
         mIdeal = new XYSeries("Ideal  Position");
         mReal = new XYSeries("Ideal  Velocity");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdeal);
-        mCollection.addSeries(mReal);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdeal);
+        collection.addSeries(mReal);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 aChartTitle, 
                 "X (Inches)", 
                 "Y (Inches)", 
-                mCollection, 
+                collection, 
                 PlotOrientation.VERTICAL, 
                 true, 
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        mChartPanel = new ChartPanel(chart);
-        mChartPanel.setPreferredSize(new Dimension(400, 300));
-        mChartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(mChartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     /**

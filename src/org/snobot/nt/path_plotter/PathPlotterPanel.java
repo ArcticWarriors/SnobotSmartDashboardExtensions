@@ -23,13 +23,10 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PathPlotterPanel extends JPanel
 {
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdealPosition;
-    private XYSeries mIdealVelocity;
-    private XYSeries mRealPosition;
-    private XYSeries mRealVelocity;
-
-    private JPanel mChartPanel;
+    private final XYSeries mIdealPosition;
+    private final XYSeries mIdealVelocity;
+    private final XYSeries mRealPosition;
+    private final XYSeries mRealVelocity;
 
     /**
      * Constructor.
@@ -42,26 +39,26 @@ public class PathPlotterPanel extends JPanel
         mRealVelocity = new XYSeries("Real Velocity");
         mRealPosition = new XYSeries("Real Position");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdealPosition);
-        mCollection.addSeries(mIdealVelocity);
-        mCollection.addSeries(mRealVelocity);
-        mCollection.addSeries(mRealPosition);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdealPosition);
+        collection.addSeries(mIdealVelocity);
+        collection.addSeries(mRealVelocity);
+        collection.addSeries(mRealPosition);
 
         final JFreeChart chart = ChartFactory.createXYLineChart("Motion Profile", "Time (sec)",
                 "Data",
-                mCollection,
+                collection,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        mChartPanel = new ChartPanel(chart);
-        mChartPanel.setPreferredSize(new Dimension(400, 300));
-        mChartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(mChartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     /**
@@ -78,8 +75,8 @@ public class PathPlotterPanel extends JPanel
 
         for (int i = 0; i < aPathpoints.size(); ++i)
         {
-            mIdealPosition.add(i, aPathpoints.get(i).mPosition);
-            mIdealVelocity.add(i, aPathpoints.get(i).mVelocity);
+            mIdealPosition.add(i, aPathpoints.get(i).getPosition());
+            mIdealVelocity.add(i, aPathpoints.get(i).getVelocity());
         }
     }
 
@@ -102,8 +99,8 @@ public class PathPlotterPanel extends JPanel
      */
     public void setPoint(int aIndex, PathSetpoint aPoint)
     {
-        mRealPosition.add(aIndex, aPoint.mPosition);
-        mRealVelocity.add(aIndex, aPoint.mVelocity);
+        mRealPosition.add(aIndex, aPoint.getPosition());
+        mRealVelocity.add(aIndex, aPoint.getVelocity());
     }
 
 }

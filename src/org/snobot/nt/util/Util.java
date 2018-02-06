@@ -7,8 +7,12 @@ import java.awt.Color;
  * 
  * @author PJ
  */
-public class Util
+public final class Util
 {
+    private Util()
+    {
+
+    }
 
     /**
      * Gets a color for a motor based on a speed.
@@ -19,20 +23,22 @@ public class Util
      */
     public static Color getMotorColor(double aSpeed)
     {
-        if (Double.isNaN(aSpeed))
+        double speed = aSpeed;
+
+        if (Double.isNaN(speed))
         {
-            aSpeed = 0;
+            speed = 0;
         }
-        if (aSpeed > 1)
+        if (speed > 1)
         {
-            aSpeed = 1;
+            speed = 1;
         }
-        else if (aSpeed < -1)
+        else if (speed < -1)
         {
-            aSpeed = -1;
+            speed = -1;
         }
 
-        float percent = (float) ((aSpeed + 1) / 2);
+        float percent = (float) ((speed + 1) / 2);
         float hue = percent * .33f;
         float saturation = 1f;
         float brightness = 1f;

@@ -22,11 +22,8 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PlotterHeading extends JPanel
 {
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdealHeading;
-    private XYSeries mRealHeading;
-
-    private JPanel mChartPanel;
+    private final XYSeries mIdealHeading;
+    private final XYSeries mRealHeading;
 
     /**
      * Constructor.
@@ -40,26 +37,26 @@ public class PlotterHeading extends JPanel
         mIdealHeading = new XYSeries("Ideal Heading");
         mRealHeading = new XYSeries("Real Heading");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdealHeading);
-        mCollection.addSeries(mRealHeading);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdealHeading);
+        collection.addSeries(mRealHeading);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 aChartTitle,
                 "Time (sec)",
                 "Data",
-                mCollection,
+                collection,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        mChartPanel = new ChartPanel(chart);
-        mChartPanel.setPreferredSize(new Dimension(400, 300));
-        mChartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(mChartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     /**
