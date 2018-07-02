@@ -22,14 +22,11 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PlotterWheel extends JPanel
 {
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdealPosition;
-    private XYSeries mIdealVelocity;
+    private final XYSeries mIdealPosition;
+    private final XYSeries mIdealVelocity;
 
-    private XYSeries mRealPosition;
-    private XYSeries mRealVelocity;
-
-    private JPanel m_chartPanel;
+    private final XYSeries mRealPosition;
+    private final XYSeries mRealVelocity;
 
     public PlotterWheel(String chartTitle)
     {
@@ -40,28 +37,28 @@ public class PlotterWheel extends JPanel
         mRealPosition = new XYSeries("Real  Position");
         mRealVelocity = new XYSeries("Real  Velocity");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdealPosition);
-        mCollection.addSeries(mIdealVelocity);
-        mCollection.addSeries(mRealPosition);
-        mCollection.addSeries(mRealVelocity);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdealPosition);
+        collection.addSeries(mIdealVelocity);
+        collection.addSeries(mRealPosition);
+        collection.addSeries(mRealVelocity);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 chartTitle,
                 "Time (sec)",
                 "Data",
-                mCollection,
+                collection,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     public void setPath(List<Double> position, List<Double> velocity)

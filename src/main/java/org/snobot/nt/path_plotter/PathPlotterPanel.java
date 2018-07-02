@@ -23,13 +23,10 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PathPlotterPanel extends JPanel
 {
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdealPosition;
-    private XYSeries mIdealVelocity;
-    private XYSeries mRealPosition;
-    private XYSeries mRealVelocity;
-
-    private JPanel m_chartPanel;
+    private final XYSeries mIdealPosition;
+    private final XYSeries mIdealVelocity;
+    private final XYSeries mRealPosition;
+    private final XYSeries mRealVelocity;
 
     public PathPlotterPanel()
     {
@@ -39,26 +36,26 @@ public class PathPlotterPanel extends JPanel
         mRealVelocity = new XYSeries("Real Velocity");
         mRealPosition = new XYSeries("Real Position");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdealPosition);
-        mCollection.addSeries(mIdealVelocity);
-        mCollection.addSeries(mRealVelocity);
-        mCollection.addSeries(mRealPosition);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdealPosition);
+        collection.addSeries(mIdealVelocity);
+        collection.addSeries(mRealVelocity);
+        collection.addSeries(mRealPosition);
 
         final JFreeChart chart = ChartFactory.createXYLineChart("Motion Profile", "Time (sec)",
                 "Data",
-                mCollection,
+                collection,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     public void setPath(List<PathSetpoint> path_points)

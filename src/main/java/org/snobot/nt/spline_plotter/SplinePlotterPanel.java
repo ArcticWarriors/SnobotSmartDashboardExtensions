@@ -15,10 +15,10 @@ import javax.swing.JPanel;
  */
 public class SplinePlotterPanel extends JPanel
 {
-    private PlotterWheel mLeftWheelPlotter;
-    private PlotterWheel mRightWheelPlotter;
-    private PlotterHeading mHeadingPlotter;
-    private PlotterXY mXYPlotter;
+    private final PlotterWheel mLeftWheelPlotter;
+    private final PlotterWheel mRightWheelPlotter;
+    private final PlotterHeading mHeadingPlotter;
+    private final PlotterXY mXYPlotter;
 
     public SplinePlotterPanel()
     {

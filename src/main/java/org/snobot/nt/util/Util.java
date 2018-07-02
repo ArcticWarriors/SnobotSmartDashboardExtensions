@@ -6,10 +6,14 @@ import java.awt.Color;
  *
  * @author PJ
  */
-public class Util
+public final class Util
 {
+    private Util()
+    {
 
-    public static Color getMotorColor(double aSpeed)
+    }
+
+    public static Color getMotorColor(double aSpeed) // NOPMD
     {
         if (Double.isNaN(aSpeed))
         {

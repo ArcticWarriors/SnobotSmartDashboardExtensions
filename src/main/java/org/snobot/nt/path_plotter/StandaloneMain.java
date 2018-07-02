@@ -1,14 +1,16 @@
 package org.snobot.nt.path_plotter;
 
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
-public class StandaloneMain
+public final class StandaloneMain
 {
+    private StandaloneMain()
+    {
+
+    }
 
     public static void main(String[] args)
     {
@@ -58,14 +60,6 @@ public class StandaloneMain
 
         frame.pack();
         frame.setVisible(true);
-
-        frame.addComponentListener(new ComponentAdapter()
-        {
-            @Override
-            public void componentResized(ComponentEvent arg0)
-            {
-            }
-        });
 
         Thread t = new Thread(new Runnable()
         {

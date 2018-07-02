@@ -15,9 +15,9 @@ import javax.swing.event.DocumentListener;
 public class AutonPanel extends JPanel
 {
 
-    private JButton mSaveButton;
-    private JTextArea mTextArea;
-    private JPanel mBoolPanel;
+    private final JButton mSaveButton;
+    private final JTextArea mTextArea;
+    private final JPanel mBoolPanel;
 
     public AutonPanel()
     {
@@ -51,7 +51,7 @@ public class AutonPanel extends JPanel
         return this.mTextArea;
     }
 
-    public void setParseSuccess(boolean parseSuccess)
+    public final void setParseSuccess(boolean parseSuccess)
     {
         if (parseSuccess)
         {

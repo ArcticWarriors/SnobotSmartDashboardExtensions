@@ -22,11 +22,8 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PlotterHeading extends JPanel
 {
-    private XYSeriesCollection mCollection;
-    private XYSeries mIdealHeading;
-    private XYSeries mRealHeading;
-
-    private JPanel m_chartPanel;
+    private final XYSeries mIdealHeading;
+    private final XYSeries mRealHeading;
 
     public PlotterHeading(String aChartTitle)
     {
@@ -34,26 +31,26 @@ public class PlotterHeading extends JPanel
         mIdealHeading = new XYSeries("Ideal Heading");
         mRealHeading = new XYSeries("Real Heading");
 
-        mCollection = new XYSeriesCollection();
-        mCollection.addSeries(mIdealHeading);
-        mCollection.addSeries(mRealHeading);
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(mIdealHeading);
+        collection.addSeries(mRealHeading);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 aChartTitle,
                 "Time (sec)",
                 "Data",
-                mCollection,
+                collection,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
                 false);
         chart.setBackgroundPaint(Color.white);
 
-        m_chartPanel = new ChartPanel(chart);
-        m_chartPanel.setPreferredSize(new Dimension(400, 300));
-        m_chartPanel.setBackground(getBackground());
+        JPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setBackground(getBackground());
 
-        add(m_chartPanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.CENTER);
     }
 
     public void setPath(List<Double> headings)
