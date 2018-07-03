@@ -21,7 +21,7 @@ public final class Util
      *            The speed
      * @return The calculated color
      */
-    public static Color getMotorColor(double aSpeed) // NOPMD
+    public static Color getMotorColor(double aSpeed)
     {
         double speed = aSpeed;
 
