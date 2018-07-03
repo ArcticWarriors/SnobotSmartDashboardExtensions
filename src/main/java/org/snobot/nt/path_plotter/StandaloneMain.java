@@ -12,9 +12,14 @@ public final class StandaloneMain
 
     }
 
-    public static void main(String[] args)
+    /**
+     * Main Runner.
+     * 
+     * @param aArg
+     *            optional arguments
+     */
+    public static void main(String[] aArg)
     {
-        JFrame frame = new JFrame();
 
         final PathPlotterPanel panel = new PathPlotterPanel();
 
@@ -56,6 +61,7 @@ public final class StandaloneMain
 
         panel.setPath(path_points);
 
+        JFrame frame = new JFrame();
         frame.add(panel);
 
         frame.pack();
@@ -91,9 +97,9 @@ public final class StandaloneMain
                     {
                         Thread.sleep(500);
                     }
-                    catch (InterruptedException e)
+                    catch (InterruptedException ex)
                     {
-                        e.printStackTrace();
+                        ex.printStackTrace(); // NOPMD
                     }
                 }
             }
