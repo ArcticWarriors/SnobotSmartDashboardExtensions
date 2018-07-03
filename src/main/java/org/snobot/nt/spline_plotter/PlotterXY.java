@@ -25,7 +25,13 @@ public class PlotterXY extends JPanel
         public double mY;
     }
 
-    public PlotterXY(String chartTitle)
+    /**
+     * Constructor.
+     * 
+     * @param aChartTitle
+     *            The title of the chart
+     */
+    public PlotterXY(String aChartTitle)
     {
         setLayout(new BorderLayout());
         mIdeal = new XYSeries("Ideal  Position");
@@ -36,7 +42,7 @@ public class PlotterXY extends JPanel
         collection.addSeries(mReal);
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
-                chartTitle, 
+                aChartTitle, 
                 "X (Inches)", 
                 "Y (Inches)", 
                 collection,
@@ -53,22 +59,39 @@ public class PlotterXY extends JPanel
         add(chartPanel, BorderLayout.CENTER);
     }
 
-    public void setPath(List<XYPoint> xyList)
+    /**
+     * Sets the ideal path to follow.
+     * 
+     * @param aXyList
+     *            The ideal (x, y) position, in inches
+     */
+    public void setPath(List<XYPoint> aXyList)
     {
         mIdeal.clear();
         clearActuals();
 
-        for (int i = 0; i < xyList.size(); ++i)
+        for (int i = 0; i < aXyList.size(); ++i)
         {
-            mIdeal.add(xyList.get(i).mX, xyList.get(i).mY);
+            mIdeal.add(aXyList.get(i).mX, aXyList.get(i).mY);
         }
     }
 
+    /**
+     * Clears the measured values.
+     */
     public void clearActuals()
     {
         mReal.clear();
     }
 
+    /**
+     * Sets the measured point.
+     * 
+     * @param aX
+     *            The X position, in inches
+     * @param aY
+     *            The Y position, in inches
+     */
     public void setPoint(double aX, double aY)
     {
         mReal.add(aX, aY);

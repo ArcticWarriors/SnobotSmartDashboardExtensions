@@ -3,7 +3,8 @@ package org.snobot.nt.util;
 import java.awt.Color;
 
 /**
- *
+ * Utility class for doing things like getting motor colors, etc.
+ * 
  * @author PJ
  */
 public final class Util
@@ -13,22 +14,31 @@ public final class Util
 
     }
 
+    /**
+     * Gets a color for a motor based on a speed.
+     * 
+     * @param aSpeed
+     *            The speed
+     * @return The calculated color
+     */
     public static Color getMotorColor(double aSpeed) // NOPMD
     {
-        if (Double.isNaN(aSpeed))
+        double speed = aSpeed;
+
+        if (Double.isNaN(speed))
         {
-            aSpeed = 0;
+            speed = 0;
         }
-        if (aSpeed > 1)
+        if (speed > 1)
         {
-            aSpeed = 1;
+            speed = 1;
         }
-        else if (aSpeed < -1)
+        else if (speed < -1)
         {
-            aSpeed = -1;
+            speed = -1;
         }
 
-        float percent = (float) ((aSpeed + 1) / 2);
+        float percent = (float) ((speed + 1) / 2);
         float hue = percent * .33f;
         float saturation = 1f;
         float brightness = 1f;
@@ -38,7 +48,7 @@ public final class Util
     }
 
     /**
-     * Modifies the color to make it more see through
+     * Modifies the color to make it more see through.
      * 
      * @param aColor
      *            The color to modify

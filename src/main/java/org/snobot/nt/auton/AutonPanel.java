@@ -19,6 +19,9 @@ public class AutonPanel extends JPanel
     private final JTextArea mTextArea;
     private final JPanel mBoolPanel;
 
+    /**
+     * Constructor.
+     */
     public AutonPanel()
     {
         setPreferredSize(new Dimension(300, 150));
@@ -41,19 +44,36 @@ public class AutonPanel extends JPanel
         setParseSuccess(false);
     }
 
+    /**
+     * Registers a listener to the button.
+     * 
+     * @param aListener
+     *            The listener
+     */
     public void addSaveListener(ActionListener aListener)
     {
         mSaveButton.addActionListener(aListener);
     }
 
+    /**
+     * Gets the text area.
+     * 
+     * @return The text area
+     */
     public JTextArea getTextArea()
     {
         return this.mTextArea;
     }
 
-    public final void setParseSuccess(boolean parseSuccess)
+    /**
+     * Sets if the robot successfully parsed the command.
+     * 
+     * @param aParseSuccess
+     *            True if it was successful
+     */
+    public final void setParseSuccess(boolean aParseSuccess)
     {
-        if (parseSuccess)
+        if (aParseSuccess)
         {
             mBoolPanel.setBackground(Color.GREEN);
         }
@@ -63,6 +83,12 @@ public class AutonPanel extends JPanel
         }
     }
 
+    /**
+     * Adds a listener to the text area for changes.
+     * 
+     * @param aListener
+     *            The listener
+     */
     public void addTextChangedListener(DocumentListener aListener)
     {
         mTextArea.getDocument().addDocumentListener(aListener);
