@@ -67,7 +67,7 @@ public final class StandaloneMain
         frame.pack();
         frame.setVisible(true);
 
-        Thread t = new Thread(new Runnable()
+        Thread threa = new Thread(new Runnable()
         {
 
             @Override
@@ -77,16 +77,16 @@ public final class StandaloneMain
 
                 for (int i = 0; i < path_points.size(); ++i)
                 {
-                    PathSetpoint p = path_points.get(i);
-                    p.mVelocity *= .9;
-                    p.mPosition = 0;
+                    PathSetpoint setpoint = path_points.get(i);
+                    setpoint.mVelocity *= .9;
+                    setpoint.mPosition = 0;
 
                     if (i != 0)
                     {
-                        p.mPosition = actuals.get(i - 1).mPosition + p.mVelocity * .02;
+                        setpoint.mPosition = actuals.get(i - 1).mPosition + setpoint.mVelocity * .02;
                     }
 
-                    actuals.add(p);
+                    actuals.add(setpoint);
                 }
 
                 for (int i = 0; i < actuals.size(); ++i)
@@ -104,6 +104,6 @@ public final class StandaloneMain
                 }
             }
         });
-        t.start();
+        threa.start();
     }
 }

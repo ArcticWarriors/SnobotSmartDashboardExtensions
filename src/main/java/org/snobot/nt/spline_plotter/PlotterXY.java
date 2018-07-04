@@ -45,7 +45,7 @@ public class PlotterXY extends JPanel
                 aChartTitle, 
                 "X (Inches)", 
                 "Y (Inches)", 
-                collection, 
+                collection,
                 PlotOrientation.VERTICAL, 
                 true, 
                 true,
