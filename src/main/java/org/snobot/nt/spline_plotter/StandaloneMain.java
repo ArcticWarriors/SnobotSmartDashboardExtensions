@@ -27,59 +27,59 @@ public final class StandaloneMain
 
         final List<SplineSegment> path_points = new ArrayList<SplineSegment>();
 
-        SplineSegment p;
+        SplineSegment splineSegment;
 
-        p = new SplineSegment();
-        path_points.add(p);
+        splineSegment = new SplineSegment();
+        path_points.add(splineSegment);
 
         double radius = 1.7;
         double angleMult = .1;
 
         for (int i = 1; i < 10; ++i)
         {
-            p = new SplineSegment();
-            p.mLeftSideVelocity = 0 + i * .7;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
-            p.mRightSideVelocity = p.mLeftSideVelocity;
-            p.mRightSidePosition = p.mLeftSidePosition;
-            p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
-            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
+            splineSegment = new SplineSegment();
+            splineSegment.mLeftSideVelocity = 0 + i * .7;
+            splineSegment.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + splineSegment.mLeftSideVelocity * .02;
+            splineSegment.mRightSideVelocity = splineSegment.mLeftSideVelocity;
+            splineSegment.mRightSidePosition = splineSegment.mLeftSidePosition;
+            splineSegment.mRobotHeading = i;
+            splineSegment.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            splineSegment.mAverageY = (radius * i) * Math.cos(angleMult * i);
 
-            path_points.add(p);
+            path_points.add(splineSegment);
         }
         for (int i = 0; i < 20; ++i)
         {
-            p = new SplineSegment();
-            p.mLeftSideVelocity = 7.0;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
-            p.mRightSideVelocity = p.mLeftSideVelocity;
-            p.mRightSidePosition = p.mLeftSidePosition;
-            p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
-            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
-            path_points.add(p);
+            splineSegment = new SplineSegment();
+            splineSegment.mLeftSideVelocity = 7.0;
+            splineSegment.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + splineSegment.mLeftSideVelocity * .02;
+            splineSegment.mRightSideVelocity = splineSegment.mLeftSideVelocity;
+            splineSegment.mRightSidePosition = splineSegment.mLeftSidePosition;
+            splineSegment.mRobotHeading = i;
+            splineSegment.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            splineSegment.mAverageY = (radius * i) * Math.cos(angleMult * i);
+            path_points.add(splineSegment);
         }
         for (int i = 0; i < 10; ++i)
         {
-            p = new SplineSegment();
-            p.mLeftSideVelocity = 7 - i * .7;
-            p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
-            p.mRightSideVelocity = p.mLeftSideVelocity;
-            p.mRightSidePosition = p.mLeftSidePosition;
-            p.mRobotHeading = i;
-            p.mAverageX = (radius * i) * Math.sin(angleMult * i);
-            p.mAverageY = (radius * i) * Math.cos(angleMult * i);
-            path_points.add(p);
+            splineSegment = new SplineSegment();
+            splineSegment.mLeftSideVelocity = 7 - i * .7;
+            splineSegment.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + splineSegment.mLeftSideVelocity * .02;
+            splineSegment.mRightSideVelocity = splineSegment.mLeftSideVelocity;
+            splineSegment.mRightSidePosition = splineSegment.mLeftSidePosition;
+            splineSegment.mRobotHeading = i;
+            splineSegment.mAverageX = (radius * i) * Math.sin(angleMult * i);
+            splineSegment.mAverageY = (radius * i) * Math.cos(angleMult * i);
+            path_points.add(splineSegment);
         }
 
-        p = new SplineSegment();
-        p.mLeftSideVelocity = 0;
-        p.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
-        p.mRightSideVelocity = p.mLeftSideVelocity;
-        p.mRightSidePosition = p.mLeftSidePosition;
-        p.mRobotHeading = 0;
-        path_points.add(p);
+        splineSegment = new SplineSegment();
+        splineSegment.mLeftSideVelocity = 0;
+        splineSegment.mLeftSidePosition = path_points.get(path_points.size() - 1).mLeftSidePosition + splineSegment.mLeftSideVelocity * .02;
+        splineSegment.mRightSideVelocity = splineSegment.mLeftSideVelocity;
+        splineSegment.mRightSidePosition = splineSegment.mLeftSidePosition;
+        splineSegment.mRobotHeading = 0;
+        path_points.add(splineSegment);
 
         panel.setPath(path_points);
 
@@ -88,7 +88,7 @@ public final class StandaloneMain
         frame.pack();
         frame.setVisible(true);
 
-        Thread t = new Thread(new Runnable()
+        Thread thread = new Thread(new Runnable()
         {
 
             @Override
@@ -98,23 +98,23 @@ public final class StandaloneMain
 
                 for (int i = 0; i < path_points.size(); ++i)
                 {
-                    SplineSegment p = path_points.get(i);
-                    p.mLeftSideVelocity *= .9;
-                    p.mLeftSidePosition = 0;
-                    p.mRightSideVelocity = p.mLeftSideVelocity * .5;
-                    p.mRightSidePosition = 0;
-                    p.mRobotHeading = 0;
+                    SplineSegment splineSegment = path_points.get(i);
+                    splineSegment.mLeftSideVelocity *= .9;
+                    splineSegment.mLeftSidePosition = 0;
+                    splineSegment.mRightSideVelocity = splineSegment.mLeftSideVelocity * .5;
+                    splineSegment.mRightSidePosition = 0;
+                    splineSegment.mRobotHeading = 0;
 
                     if (i != 0)
                     {
-                        p.mLeftSidePosition = actuals.get(i - 1).mLeftSidePosition + p.mLeftSideVelocity * .02;
-                        p.mRightSidePosition = p.mLeftSidePosition * .5;
-                        p.mRobotHeading = i * .8;
-                        p.mAverageX = p.mAverageX * .8;
-                        p.mAverageY = p.mAverageY * .8;
+                        splineSegment.mLeftSidePosition = actuals.get(i - 1).mLeftSidePosition + splineSegment.mLeftSideVelocity * .02;
+                        splineSegment.mRightSidePosition = splineSegment.mLeftSidePosition * .5;
+                        splineSegment.mRobotHeading = i * .8;
+                        splineSegment.mAverageX = splineSegment.mAverageX * .8;
+                        splineSegment.mAverageY = splineSegment.mAverageY * .8;
                     }
 
-                    actuals.add(p);
+                    actuals.add(splineSegment);
                 }
 
                 for (int i = 0; i < actuals.size(); ++i)
@@ -132,6 +132,6 @@ public final class StandaloneMain
                 }
             }
         });
-        t.start();
+        thread.start();
     }
 }

@@ -1,5 +1,6 @@
 
 apply plugin: "java"
+apply plugin: "checkstyle"
 apply plugin: "pmd"
 apply plugin: "findbugs"
 
@@ -20,10 +21,10 @@ task wrapper(type: Wrapper) {
 
 //////////////////////////////
 // Style/Formatting stuff
-//checkstyle {
-//    toolVersion = "8.1"
-//    configFile = new File(rootDir, "styleguide/checkstyle.xml")
-//}
+checkstyle {
+    toolVersion = "8.1"
+    configFile = new File(rootDir, "styleguide/checkstyle.xml")
+}
 
 pmd {
     consoleOutput  = true
