@@ -1,0 +1,14 @@
+
+apply plugin: "java"
+apply from: "$rootDir/shared_styleguide.gradle"
+
+
+repositories {
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    compile 'jfree:jfreechart:1.0.13'
+}
